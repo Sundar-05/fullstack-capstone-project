@@ -12,7 +12,7 @@ const app = express();
 const port = 3050;
 
 // Serve static files from the public directory (for home.html)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../giftlink-frontend/public')));
 
 // Serve static files for React App from a subdirectory
 app.use('/app', express.static(path.join(__dirname, 'public', 'react-app')));
@@ -40,7 +40,7 @@ app.use(express.json());
 
 // Route files
 const giftRoutes = require('./routes/giftRoutes');
-const authRoutes = require('./routes/authRoutes');
+// const authRoutes = require('./routes/authRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const pinoHttp = require('pino-http');
 const logger = require('./logger');
@@ -49,7 +49,7 @@ app.use(pinoHttp({ logger }));
 
 // Use Routes
 app.use('/api/gifts', giftRoutes);
-app.use('/api/auth', authRoutes);
+// app.use('/api/auth', authRoutes);
 app.use('/api/search', searchRoutes);
 
 // Default Route for React App
