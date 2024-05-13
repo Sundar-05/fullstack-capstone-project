@@ -3,12 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const path = require('path');
+const cors = require('cors');
 
 const pinoLogger = require('./logger')
 
 const connectToDatabase = require('./models/db');
 
 const app = express();
+app.use("*",cors());
 const port = 3050;
 
 // Serve static files from the public directory (for home.html)
@@ -51,6 +53,10 @@ app.use(pinoHttp({ logger }));
 app.use('/api/gifts', giftRoutes);
 // app.use('/api/auth', authRoutes);
 app.use('/api/search', searchRoutes);
+
+app.get("/",(req,res)=>{
+    res.send("Inside the server")
+})
 
 // Default Route for React App
 app.get('/app/*', (req, res) => {
